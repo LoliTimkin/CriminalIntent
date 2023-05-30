@@ -18,6 +18,7 @@ class CrimeFragment: Fragment() {
     private lateinit var titleField: EditText
     private lateinit var dateButton: Button
     private lateinit var solvedCheckBox: CheckBox
+    //private lateinit var policeButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,10 +30,13 @@ class CrimeFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       val view = inflater.inflate(R.layout.fragment_crime, container, false)
+        val view = inflater.inflate(R.layout.fragment_crime, container, false)
+        //val viewReqPolicy = inflater.inflate(R.layout.police_need_fragment_crime, container, false)
         titleField = view.findViewById(R.id.crime_title) as EditText
         dateButton = view.findViewById(R.id.crime_date) as Button
         solvedCheckBox = view.findViewById(R.id.crime_solved) as CheckBox
+        //policeButton = viewReqPolicy.findViewById(R.id.call_police) as Button
+
         dateButton.apply {
             text = crime.date.toString()
             isEnabled = false

@@ -82,17 +82,49 @@ class CrimeListFragment : Fragment() {
     private inner class CrimeAdapter(var crimes: List<Crime>)
         : RecyclerView.Adapter<CrimeHolder>() {
 
-            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CrimeHolder {
-                val view = layoutInflater.inflate(R.layout.list_item_crime, parent,false)
-                return CrimeHolder(view)
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CrimeHolder {
+            val view = layoutInflater.inflate(R.layout.list_item_crime, parent,false)
+            val viewReqPolicy = layoutInflater.inflate(R.layout.list_item_crime, parent,false)
+
+
+            if (viewType == R.layout.list_item_crime) return CrimeHolder(view)
+            else return CrimeHolder(viewReqPolicy)
+        }
+
+        override fun getItemCount() = crimes.size
+
+        override fun onBindViewHolder(holder: CrimeHolder, position: Int) {
+            val crime = crimes[position]
+            holder.bind(crime)
+
+            when (holder) {
+                is CrimeHolder -> {
+                    val name = crime as Crime
+                    // bind NameViewHolder
+                }
+
+                is CrimeHolder -> {
+                    val adModel = crime as Crime
+                    // bind AdViewHolder
+                }
+
             }
+        }
 
-            override fun getItemCount() = crimes.size
+        override fun getItemViewType(position: Int): Int {
+            val crime = crimes[position]
 
-            override fun onBindViewHolder(holder: CrimeHolder, position: Int) {
-                val crime = crimes[position]
-                holder.bind(crime)
-            }
+             return  if (crime.requiresPolicy == "OriginalView") R.layout.list_item_crime  else R.layout.list_item_crime
+             //return when(crime.requiresPolicy) {
+             //   is "OriginalView" -> {
+                    R.layout.list_item_crime
+              //  }
 
+            //    else -> {
+                    R.layout.list_item_crime
+            //    }
+          // }
+
+        }
     }
 }
