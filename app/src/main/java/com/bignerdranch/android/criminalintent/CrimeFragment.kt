@@ -10,6 +10,8 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import  android.text.format.DateFormat
+import java.util.*
 
 
 class CrimeFragment: Fragment() {
@@ -36,9 +38,13 @@ class CrimeFragment: Fragment() {
         dateButton = view.findViewById(R.id.crime_date) as Button
         solvedCheckBox = view.findViewById(R.id.crime_solved) as CheckBox
         //policeButton = viewReqPolicy.findViewById(R.id.call_police) as Button
+        //titleField = viewReqPolicy.findViewById(R.id.crime_title) as EditText
+        //dateButton = viewReqPolicy.findViewById(R.id.crime_date) as Button
+        //solvedCheckBox = viewReqPolicy.findViewById(R.id.crime_solved) as CheckBox
 
         dateButton.apply {
-            text = crime.date.toString()
+            //text = crime.date.toString()
+            text = DateFormat.format("EEE, MMM dd, yyyy", crime.date)
             isEnabled = false
         }
        return view
