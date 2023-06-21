@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -30,15 +31,23 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
-    }
+    } // if you need support export database in file umcommemt next and enable exportScheme = true
+    // in CrimeDatabase
+    // kapt {
+    //    arguments {
+    //        arg("room.schemaLocation", "some/path/goes/here")
+    //    }
+    //}
 }
 
 dependencies {
-
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.3.0'
+    //implementation 'androidx.room:room-runtime:2.1.0-alpha04'
+    implementation 'androidx.room:room-runtime:2.5.1'
+    kapt 'androidx.room:room-compiler:2.5.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
